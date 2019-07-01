@@ -174,11 +174,12 @@ class Game extends React.Component {
           <Board squares={current.squares} onClick={i => this.handleClick(i)} />
         </div>
         <div className="game-info">
-          <div>{status}</div>
+          <button onClick={() => this.jumpTo(0)}>Recommencer</button>
+          {/* <div>{status}</div>
           <button onClick={() => this.setState({ reversed: !reversed })}>
             Order
           </button>
-          <ul>{this.state.reversed ? moves.reverse() : moves}</ul>
+          <ul>{this.state.reversed ? moves.reverse() : moves}</ul> */}
         </div>
       </div>
     );
