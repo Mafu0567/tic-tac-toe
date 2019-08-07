@@ -57,21 +57,6 @@ class Board extends React.Component {
     return (
       <div className="board-grid">
         {this.renderGrid()}
-        {/* <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div> */}
       </div>
     );
   }
@@ -145,28 +130,9 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const reversed = this.state.reversed;
-
-    const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
-      const highlighted = this.state.stepNumber === move ? "bold" : "normal";
-      return (
-        <li key={move} style={{ fontWeight: highlighted }}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-          {desc !== "Go to game start" &&
-            (!this.state.history[move].xIsNext ? "X" : "O") +
-              this.sqToXYPos(this.state.history[move].squareNumber)}
-        </li>
-      );
-    });
-
-    let status;
     if (winner) {
-      status = "Winner " + winner;
     } else if (!current.squares.includes(null)) {
-      status = "Draw";
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
     return (
       <div className="game">
@@ -175,11 +141,6 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <button onClick={() => this.jumpTo(0)}>Recommencer</button>
-          {/* <div>{status}</div>
-          <button onClick={() => this.setState({ reversed: !reversed })}>
-            Order
-          </button>
-          <ul>{this.state.reversed ? moves.reverse() : moves}</ul> */}
         </div>
       </div>
     );
