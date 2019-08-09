@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import barbotine from './img/Barbalib.jpg';
+import barbibul from './img/Barbabright.jpg';
 
 let winningMove;
 
@@ -12,7 +14,7 @@ function Square(props) {
       className="square"
       onClick={props.onClick}
     >
-      {props.value}
+      {props.value && <img src={props.value} alt={props.value} width="90px" height='90px'/>}
     </button>
   );
 }
@@ -85,7 +87,7 @@ class Game extends React.Component {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = this.state.xIsNext ? barbibul : barbotine;
     this.setState({
       history: history.concat([
         {
