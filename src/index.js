@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import barbotine from './img/Barbalib.jpg';
-import barbibul from './img/Barbabright.jpg';
+import barbotine from './img/Barbalib.png';
+import barbibul from './img/Barbabright.png';
 
 let winningMove;
 
