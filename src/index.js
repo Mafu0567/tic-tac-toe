@@ -14,7 +14,11 @@ function Square(props) {
       className="square"
       onClick={props.onClick}
     >
-      {props.value && <img src={props.value} alt={props.value} width="90px" height='90px'/>}
+      {props.value 
+      && <img 
+        src={props.value} 
+        alt={props.value}
+        width='90px' height='90px' />}
     </button>
   );
 }
