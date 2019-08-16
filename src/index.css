@@ -8,14 +8,15 @@ ul {
   padding-left: 30px;
 }
 
+.board-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .board-row:after {
   clear: both;
   content: "";
   display: table;
-}
-
-.status {
-  margin-bottom: 10px;
 }
 
 .square {
@@ -46,9 +47,9 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .game-info {
-  margin-left: 20px;
+  margin: 1rem 0;
 }
