@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import barbotine from './img/Barbalib.png';
+import barbibul from './img/Barbabright.png';
 
 let winningMove;
 
@@ -12,7 +14,11 @@ function Square(props) {
       className="square"
       onClick={props.onClick}
     >
-      {props.value}
+      {props.value 
+      && <img 
+        src={props.value} 
+        alt={props.value}
+        width='90px' height='90px' />}
     </button>
   );
 }
@@ -57,21 +63,6 @@ class Board extends React.Component {
     return (
       <div className="board-grid">
         {this.renderGrid()}
-        {/* <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div> */}
       </div>
     );
   }
@@ -100,7 +91,7 @@ class Game extends React.Component {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = this.state.xIsNext ? barbibul : barbotine;
     this.setState({
       history: history.concat([
         {
@@ -145,28 +136,9 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const reversed = this.state.reversed;
-
-    const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
-      const highlighted = this.state.stepNumber === move ? "bold" : "normal";
-      return (
-        <li key={move} style={{ fontWeight: highlighted }}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-          {desc !== "Go to game start" &&
-            (!this.state.history[move].xIsNext ? "X" : "O") +
-              this.sqToXYPos(this.state.history[move].squareNumber)}
-        </li>
-      );
-    });
-
-    let status;
     if (winner) {
-      status = "Winner " + winner;
     } else if (!current.squares.includes(null)) {
-      status = "Draw";
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
     return (
       <div className="game">
@@ -174,11 +146,7 @@ class Game extends React.Component {
           <Board squares={current.squares} onClick={i => this.handleClick(i)} />
         </div>
         <div className="game-info">
-          <div>{status}</div>
-          <button onClick={() => this.setState({ reversed: !reversed })}>
-            Order
-          </button>
-          <ul>{this.state.reversed ? moves.reverse() : moves}</ul>
+          <button onClick={() => this.jumpTo(0)}>Recommencer</button>
         </div>
       </div>
     );
